@@ -1,0 +1,8 @@
+config:
+  teleport-delay-seconds: 5 
+  teleport-countdown-start: '&6Teleporting to your last logout location.'
+  teleport-countdown: '&6Teleporting in {time}'
+  teleport-message: '&6Teleporting...'
+  teleport-cancel: '&cTeleportation canceled.'
+  exclude-log-out-worlds:
+  - spawn

@@ -1,0 +1,13 @@
+main: me.thecamzone.TpToLogout
+name: TpToLogout
+version: 0.0.1
+description: Provides a command to teleport to the last location you logged out from.
+api-version: 1.20
+author: TheCamZone
+commands:
+  tptologout:
+    description: Teleports you to your last logged out location
+    aliases: tplogout
+    permission: tptologout.default
+    permission-message: "Unknown command. Type \"/help\" for help."
+    usage: /<command> [otherPlayer]
