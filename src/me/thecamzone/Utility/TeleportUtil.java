@@ -13,7 +13,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
 import me.thecamzone.TpToLogout;
-import net.md_5.bungee.api.ChatColor;
 
 public class TeleportUtil implements Listener {
 
@@ -47,46 +46,18 @@ public class TeleportUtil implements Listener {
             	}
             	
             	if(timeLeft == delay && delay > 0) {
-            		String startMessage = plugin.getConfig().getString("config.teleport-countdown-start");
-            		
-            		if(startMessage == null) {
-                		Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "There is an error in the configuration file.");
-                		this.cancel();
-                		return;
-                	}
-            		
-            		startMessage = ChatColor.translateAlternateColorCodes('&', startMessage);
-            		
-            		player.sendMessage(startMessage);
+            		player.sendMessage(MessageUtil.getConfigString("config.teleport-countdown-start"));
             	}
             	
             	timeLeft--;
             	
                 if(timeLeft > 0) {
-                	String message = plugin.getConfig().getString("config.teleport-countdown");
-                	
-                	if(message == null) {
-                		Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "There is an error in the configuration file.");
-                		this.cancel();
-                		return;
-                	}
-                	
+                	String message = MessageUtil.getConfigString("config.teleport-countdown");
                 	message = message.replace("{time}", timeLeft + "");
-                	message = ChatColor.translateAlternateColorCodes('&', message);
                 	
                 	player.sendMessage(message);
                 } else if(timeLeft <= 0) {
-                	String teleportMessage = plugin.getConfig().getString("config.teleport-message");
-                	
-                	if(teleportMessage == null) {
-                		Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "There is an error in the configuration file.");
-                		this.cancel();
-                		return;
-                	}
-                	
-                	teleportMessage = ChatColor.translateAlternateColorCodes('&', teleportMessage);
-                	
-                	player.sendMessage(teleportMessage);
+                	player.sendMessage(MessageUtil.getConfigString("config.teleport-message"));
                 	
                 	player.teleport(location);
                 	
@@ -107,19 +78,12 @@ public class TeleportUtil implements Listener {
 			return;
 		}
 		
-		teleportCountdowns.get(player).cancel();
-		teleportCountdowns.remove(player);
-		
-		String cancelMessage = plugin.getConfig().getString("config.teleport-cancel");
-		
-		if(cancelMessage == null) {
-    		Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "There is an error in the configuration file.");
-    		return;
-    	}
-		
-		cancelMessage = ChatColor.translateAlternateColorCodes('&', cancelMessage);
-		
-		player.sendMessage(cancelMessage);
+		if (e.getFrom().getBlockX() != e.getTo().getBlockX() || e.getFrom().getBlockZ() != e.getTo().getBlockZ() || e.getFrom().getBlockY() != e.getTo().getBlockY()) {
+			teleportCountdowns.get(player).cancel();
+			teleportCountdowns.remove(player);
+			
+			player.sendMessage(MessageUtil.getConfigString("config.teleport-cancel"));
+		}
 	}
 	
 }

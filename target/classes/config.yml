@@ -3,6 +3,10 @@ config:
   teleport-countdown-start: '&6Teleporting to your last logout location.'
   teleport-countdown: '&6Teleporting in {time}'
   teleport-message: '&6Teleporting...'
+  teleport-other-player: '&aTeleporting {player} to their last known location.'
   teleport-cancel: '&cTeleportation canceled.'
+  no-last-logout: '&cThere is no last logout location.'
+  no-permission: '&cYou do not have permission to run this command.'
+  no-permission-others: '&cYou do not have permission to teleport other players.'
   exclude-log-out-worlds:
   - spawn

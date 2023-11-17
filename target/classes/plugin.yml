@@ -9,5 +9,4 @@ commands:
     description: Teleports you to your last logged out location
     aliases: tplogout
     permission: tptologout.default
-    permission-message: "Unknown command. Type \"/help\" for help."
     usage: /<command> [otherPlayer]
